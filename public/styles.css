@@ -1,0 +1,799 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e5e5e5;
+  font-family: "Inter", sans-serif;
+  transition: transform .3s ease-in;
+}
+
+.container.hide {
+  display: none;
+}
+
+/* Modal */
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.modal-container.appear {
+  display: block;
+}
+
+.modalMsg {
+  color: #377dff;
+  font-weight: bold;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  padding: 5px 15px 20px;
+  text-align: center;
+  border-radius: 10px;
+  animation-name: modalOpen;
+  animation-duration: .7s;
+}
+
+.modalBtnR, .modalBtnL {
+  background: #377dff;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 7px 20px;
+  border-radius: 7px;
+  margin: 15px 10px 5px;
+}
+
+.modalBtnR.right:hover {
+  cursor: pointer;
+  background: #078f07;
+}
+
+.modalBtnR.right:focus {
+  outline: none;
+}
+
+.modalBtnL.left:hover {
+  cursor: pointer;
+  background: #ff0000;
+}
+
+.modalBtnL.left:focus {
+  outline: none;
+}
+
+/* Chatbot Container  */
+.container-bot {
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  right: 1.3%;
+  bottom: 2%;
+  background-color: #fff;
+  max-height: 96%;
+  width: 320px;
+  border-radius: 20px;
+}
+
+.header-area {
+  display: flex;
+  position: relative;
+  height: 40px;
+  background-color: #377dff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header-area i.close {
+  color: #fff;
+  right: 18px;
+  position: absolute;
+  font-size: 1.3rem;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.header-area i.user {
+  color: #fff;
+  margin-left: 15px;
+  position: absolute;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.header-area p {
+  color: #fff;
+  margin-left: 50px;
+  position: fixed;
+  font-size: 1rem;
+}
+
+.minimize {
+  color: #fff;
+  margin-left: 255px;
+  cursor: pointer;
+}
+
+.buttonSend:focus {
+  outline: none;
+}
+
+.input-area {
+  display: flex;
+  height: 70px;
+  align-items: center;
+}
+
+.input-area input {
+  position: fixed;
+  font-family: "Inter", sans-serif;
+  color: #706e6e;
+  margin: 0px 10px;
+  padding: 10px 27px 10px 10px;
+  border-radius: 8px;
+  border: 2px solid #a9a9a9;
+  min-width: 19%;
+  height: 6%;
+}
+
+input:focus {
+  outline: 0;
+}
+
+i.fa-paperclip {
+  color: #a9a9a9;
+  z-index: 3;
+  margin-left: 75%;
+  cursor: pointer;
+}
+
+button.button {
+  height: 55%;
+  width: 12%;
+  padding-right: 0.7%;
+  background-color: #377dff;
+  border-radius: 50%;
+  position: relative;
+  right: -22px;
+  cursor: pointer;
+  border: 3px solid #377dff;
+}
+
+.button:focus {
+  outline: 0;
+}
+
+i.planeSend {
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  position: relative;
+  right: 4px;
+}
+
+.msgInbox {
+  height: 480px;
+  width: 100%;
+  overflow-y:scroll;
+}
+
+/* Scrollbar customizations */
+.msgInbox::-webkit-scrollbar {width: 6px; height: 1px; background: transparent; }
+.msgInbox::-webkit-scrollbar-thumb { background-color: #c4c2c2; border-radius: 1ex}
+.msgInbox::-webkit-scrollbar-thumb:hover {background: #b3b2b2;}
+
+.msgRight {
+  color: white;
+  clear: both;
+  float: right;
+  right: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  max-width: 200px;
+  min-height: 30px;
+  padding: 4px 8px 7px 10px;
+  background-color: #377dff;
+  border-radius: 10px 0 10px 10px;
+  word-break: break-all;
+}
+
+.msgLeft {
+  color: white;
+  clear: both;
+  float: left;
+  left: 12px;
+  margin-bottom: 10px;
+  position: relative;
+  max-width: 200px;
+  min-height: 30px;
+  padding: 4px 8px 7px 10px;
+  background: #a9a9a9;
+  border-radius: 0px 10px 10px 10px;
+  word-break: break-all;  
+}
+
+.timeMssgR {
+  clear: both;
+  float: right;
+  position: relative;
+  right: 12px;
+  color: #706e6e;
+  font-size: .5rem;
+  margin: -8px 0 4px 0;
+}
+
+.timeMssgL {
+  clear: both;
+  float: left;
+  position: relative;
+  left: 12px;
+  color: #706e6e;
+  font-size: .5rem;
+  margin: -8px 0 4px 0;
+}
+
+i.msg {
+  color: #fff;
+  z-index: -1;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+button.buttonSend {
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  border-radius: 50%;
+  background-color: #377dff;
+  left: 1303px;
+  top: 595px;
+  z-index: -1;
+  cursor: pointer;
+  border: 3px solid #377dff;
+}
+
+/* New User Joining Chat Message */
+.joinMsg {
+  color: black;
+  font-style: italic;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsiveness */
+
+@media only screen and (min-width: 280px) and (max-width:414px){
+  .container-bot {
+    width: 97%;
+    height: 97%;
+  }
+
+  .msgInbox {
+    height: 700px;
+  }
+
+  .input-area input {
+    width: 80%;
+  }
+
+  .header-area {
+    height: 7%;
+  }
+
+  button.button {
+    right: -25px;
+    height: 70%;
+    width: 11%;   
+  }
+
+  i.fa-paperclip {
+    margin-left: 77%;
+  }
+  
+}
+
+@media only screen and (min-width: 280px) and (max-width: 731px) and (orientation: landscape) {
+  .container-bot {
+    width: 97%;
+    height: 97%;
+  }
+
+  .msgInbox {
+    height: 700px;
+    font-size: .7em;
+  }
+
+  .input-area input {
+    width: 87%;
+    font-size: .6em;
+  }
+
+  .header-area {
+    height: 25%;
+  }
+
+  .header-area p {
+    font-size: .8em;
+    margin-left: 7%;
+  }
+
+  .header-area i.close {
+    font-size: 1em;
+  }
+
+  .header-area i.user {
+    font-size: 1em;
+    margin-left: 3%;
+  }
+
+  button.button {
+    right: -3%;
+    height: 60%;
+    width: 5%;   
+  }
+
+  i.planeSend {
+    font-size: 1em;
+    left: -3px;
+  }
+
+  i.fa-paperclip {
+    margin-left: 88%;
+    font-size: .8em;
+  }
+  
+}
+
+/* @media only screen and (width: 375px) and (height: 667px){
+
+  .container-bot {
+    width: 365px;
+    height: 800px;
+  }
+
+  .input-area input {
+    width: 295px;
+    height: 42px;
+    bottom: 30px;
+  }
+
+  .msgInbox {
+    height: 800px;
+    margin-bottom: 10px;
+  }
+
+  button.button {
+    right: -20px;
+    height: 75%;
+    width: 11.5%;  
+    bottom: 11px;  
+  }
+
+  i.fa-paperclip {
+    margin-left: 76%;
+    margin-bottom: 25px;
+  }
+
+  .header-area {
+    height: 60px;
+    font-size: 25px;
+  }
+
+  i.planeSend {
+    font-size: 1.3em;
+    right: 3px;
+  }
+
+} */
+
+/* @media only screen and (width: 414px) and (height: 736px) {
+
+  .container-bot {
+    width: 405px;
+    height: 730px;
+  }
+
+  .msgInbox {
+    height: 580px;
+  }
+
+  .header-area {
+    height: 47px;
+  }
+
+  .input-area input {
+    width: 330px;
+    height: 42px;
+    bottom: 30px;
+  }
+
+  button.button {
+    right: -25px;
+    height: 60%;
+    width: 11%;  
+  }
+
+  i.fa-paperclip {
+    margin-left: 77%;
+    margin-bottom: 5px;
+  }
+
+} */
+
+/* iPad */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  .container-bot {
+    width: 750px;
+    height: 1000px;
+  }
+
+  .msgInbox {
+    height: 840px;
+  }
+
+  .msgInbox span.msgLeft, span.msgRight {
+    font-size: 19px;
+    max-width: 450px;
+    min-height: 30px;
+  }
+
+  .msgInbox small {
+    font-size: 12px;
+  }
+
+  .header-area {
+    height: 60px;
+    font-size: 25px;
+  }
+
+  .header-area i.close {
+    font-size: 2rem;
+  }
+
+  .header-area i.user {
+    font-size: 2rem;
+  }
+
+  .header-area p {
+    font-size: 1.5rem;
+    margin-left: 60px;
+  }
+
+  .input-area input {
+    height: 55px;
+    width: 650px;
+    left: 15px;
+    bottom: 35px;
+    font-size: 20px;
+
+  }
+  button.button {
+    right: -30px;
+    height: 75%;
+    width: 7.5%;
+    bottom: 7px;    
+  }
+
+  i.fa-paperclip {
+    margin-left: 84%;
+    margin-bottom: 16px;
+    font-size: 1.5em;
+  }
+
+  .buttonSend {
+    height: 35px;
+    width: 75px;
+  }
+
+  i.planeSend {
+    font-size: 1.8em;
+    bottom: 2px;
+    right: 2px;
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  .container-bot {
+    width: 1000px;
+    height: 1000px;
+  }
+
+  .msgInbox {
+    height: 560px;
+    margin-top: -15px;
+  }
+
+  .msgInbox span.msgLeft, span.msgRight {
+    font-size: 19px;
+    max-width: 450px;
+    min-height: 30px;
+  }
+
+  .msgInbox small {
+    font-size: 12px;
+  }
+
+  .header-area {
+    height: 70px;
+    font-size: 25px;
+  }
+
+  .header-area i.close {
+    font-size: 2rem;
+  }
+
+  .header-area i.user {
+    font-size: 2rem;
+  }
+
+  .header-area p {
+    font-size: 1.5rem;
+    margin-left: 60px;
+  }
+
+  .input-area input {
+    height: 55px;
+    width: 890px;
+    left: 18px;
+    bottom: 35px;
+    font-size: 20px;
+
+  }
+  button.button {
+    right: -30px;
+    height: 80%;
+    width: 6%;
+    bottom: 12px;    
+  }
+
+  i.fa-paperclip {
+    margin-left: 87%;
+    margin-bottom: 28px;
+    font-size: 1.5em;
+  }
+
+  i.msg {
+    font-size: 30px;
+  }
+
+  .buttonSend {
+    height: 35px;
+    width: 75px;
+  }
+
+  i.planeSend {
+    font-size: 1.8em;
+    right: 1px;
+  }
+  
+}
+
+
+@media (width: 320px) and (height: 568px) {
+  
+  .container-bot {
+    width: 97%;
+    height: 97%;
+  }
+
+  .msgInbox {
+    height: 700px;
+  }
+
+  .input-area input {
+    width: 80%;
+  }
+
+  .header-area {
+    height: 10%;
+  }
+
+  button.button {
+    right: -18px;
+    height: 70%;
+    width: 11%;   
+  }
+
+  i.planeSend {
+    font-size: 1.4em;
+  }
+
+  i.fa-paperclip {
+    margin-left: 77%;
+  }
+
+}
+
+/* Iphone X */
+
+@media only screen and (width: 375px) and (height: 812px){
+
+  .container-bot {
+    width: 365px;
+    height: 800px;
+  }
+
+  .input-area input {
+    width: 295px;
+    height: 42px;
+    bottom: 30px;
+  }
+
+  .msgInbox {
+    height: 800px;
+    margin-bottom: 10px;
+  }
+
+  button.button {
+    right: -20px;
+    height: 69%;
+    width: 11.5%;  
+    bottom: 6px;  
+  }
+
+  i.fa-paperclip {
+    margin-left: 76%;
+    margin-bottom: 10px;
+  }
+
+  .header-area {
+    height: 50px;
+    font-size: 25px;
+  }
+
+}
+
+@media only screen and (width: 812px) and (height: 375px) {
+ 
+  .container-bot {
+    width: 97.5%;
+    height: 800px;
+  }
+
+  .header-area p {
+    font-size: .6em;
+    margin-left: 50px;
+  }
+
+  .header-area i.close {
+    font-size: .8em;
+  }
+
+  .header-area i.user {
+    font-size: .8em;
+  }
+
+  .input-area input {
+    width: 88%;
+    height: 8%;
+    bottom: 16px;
+    font-size: 12px;
+  }
+
+  .msgInbox {
+    height: 800px;
+    margin-top: 2px;
+  }
+
+
+  button.button {
+    right: -3%;
+    height: 68%;
+    width: 4.5%;
+    bottom: -1px;  
+  }
+
+  i.planeSend {
+    font-size: 1.3em;
+    right: 12%;
+  }
+
+  i.fa-paperclip {
+    margin-left: 89%;
+    font-size: 1.1em;
+    margin-bottom: 3px;
+
+  }
+
+  .header-area {
+    height: 110px;
+    font-size: 25px;
+  }
+
+}
+
+/* Galaxy Fold */
+
+@media only screen and (width: 280px) and (height: 653px) {
+  button.button {
+    right: -5%;
+    height: 55%;
+    width: 13.3%;
+    bottom: 2px;  
+  }
+
+  .msgInbox {
+    height: 520px;
+  }
+
+  .header-area {
+    height: 6.5%;
+  }
+
+  i.planeSend {
+    font-size: 1.3em;
+    right: 15%;
+  }
+
+  .input-area input {
+    width: 78%;
+    left: 2px;
+    bottom: 30px;
+  }
+
+  i.fa-paperclip {
+    margin-left: 75%;
+    margin-bottom: 5px;
+  }
+}
+
+@media only screen and (width: 653px) and (height: 280px) {
+  button.button {
+    right: -2.5%;
+    height: 65%;
+    width: 5%;
+  }
+
+  .header-area {
+    height: 45%;
+  }
+
+  i.planeSend {
+    font-size: 1.2em;
+    bottom: 2%;
+  }
+
+  .input-area input {
+    width: 89%;
+    height: 10%;
+    left: 8px;
+    bottom: 15px;
+  }
+
+  i.fa-paperclip {
+    margin-left: 89%; 
+    margin-bottom: 3px;
+  }
+} 
+
+/* Large Screens */
+
+@media screen and (min-width: 1200px) {
+
+}
+

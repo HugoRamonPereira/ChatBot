@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/b44e5806e6.js" crossorigin="anonymous"></script>
+    <title>Chatbot</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="modal-container" id="modal-container">
+            <div id="modalMsg" class="modalMsg">
+                <p>Do you really want to close the chat?</p>
+                <small>If you confirm all the messages will be permanently deleted!</small>
+                <button class="modalBtnR right" id="modalBtnR">Confirm</button>
+                <button class="modalBtnL left" id="modalBtnL">Cancel</button>
+            </div>
+        </div>
+
+        <div class="container-bot" id="container-chat">
+            
+            <div class="header-area">
+                <p class="botTitle">Chatbot</p>
+                <i class="fas fa-times close" id="close-btn"></i>
+                <i class="fas fa-user-circle user"></i>
+                <i class="fas fa-minus minimize"></i>
+            </div>
+
+            <div class="msgInbox" id="msgInbox"></div>
+
+            <div class="input-area">
+                <input autocomplete="off" class="text-input" id="msg-input" type="text" placeholder="Enter Message">
+                <i class="fas fa-paperclip" id="clip"></i>
+                <button class="button" id="sendMsg" type="submit"><i class="fas fa-paper-plane planeSend" id="planeSend"></i></button>                
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="newMessage" id="newMessage">
+        <button class="buttonSend"><i class="fas fa-comment-dots msg"></i></button>        
+    </div>
+
+    <!-- Access frontend library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
+
